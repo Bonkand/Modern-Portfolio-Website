@@ -12,74 +12,84 @@ Copyright: 2023 ©MdRasen
 var typed = new Typed(".typing", {
   strings: [
     "",
+    "Web",
     "Game Developer",
     "Web Developer",
     "Graphic Designer",
     "3D Designer",
   ],
   typeSpeed: 100,
-  BackSpeed: 60,
+  backSpeed: 60,
   loop: true,
 });
-// Aside
+
+// Navigation variables
 const nav = document.querySelector(".nav"),
   navList = nav.querySelectorAll("li"),
   totalNavList = navList.length,
   allSection = document.querySelectorAll(".section"),
   totalSection = allSection.length;
 
+// Handle navigation clicks
 for (let i = 0; i < totalNavList; i++) {
   const a = navList[i].querySelector("a");
-  a.addEventListener("click", function () {
+  a.addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent default anchor behavior
+
+    // Deactivate all sections and set "back-section" for the current one
     for (let k = 0; k < totalSection; k++) {
-      allSection[k].classList.remove("back-section");
+      allSection[k].classList.remove("back-section", "active");
     }
+
     for (let j = 0; j < totalNavList; j++) {
-      if (navList[j].querySelector("a").classList.contains("active")) {
+      const navLink = navList[j].querySelector("a");
+      navLink.classList.remove("active");
+
+      if (navLink === this) {
         allSection[j].classList.add("back-section");
       }
-      navList[j].querySelector("a").classList.remove("active");
     }
+
+    // Activate the clicked link and show the target section
     this.classList.add("active");
     showSection(this);
+
     if (window.innerWidth < 1200) {
       asideSectionTogglerBtn();
     }
   });
 }
 
+// Show a specific section
 function showSection(element) {
-  for (let k = 0; k < totalSection; k++) {
-    allSection[k].classList.remove("active");
-  }
-  const target = element.getAttribute("href").split("#")[1];
-  const targetSection = document.querySelector("#" + target);
+  const targetId = element.getAttribute("href").replace("#", "");
+  const targetSection = document.getElementById(targetId);
 
-  targetSection.classList.remove("active");
-  setTimeout(() => targetSection.classList.add("active"), 10);
+  if (targetSection) {
+    targetSection.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      targetSection.classList.add("active");
+    }, 10); // Delay to retrigger animations
+  }
 }
 
-document.querySelector(".hire-me").addEventListener("click", function () {
-  showSection(this);
-  updateNav(this);
-});
-
+// Update navigation state
 function updateNav(element) {
   for (let i = 0; i < totalNavList; i++) {
-    navList[i].querySelector("a").classList.remove("active");
-    const target = element.getAttribute("href").split("#")[1];
-    if (
-      target ===
-      navList[i].querySelector("a").getAttribute("href").split("#")[1]
-    ) {
-      navList[i].querySelector("a").classList.add("active");
+    const navLink = navList[i].querySelector("a");
+    navLink.classList.remove("active");
+
+    const target = element.getAttribute("href").replace("#", "");
+    if (target === navLink.getAttribute("href").replace("#", "")) {
+      navLink.classList.add("active");
     }
   }
 }
 
-// Nav Toggler Button
+// Navigation toggler for responsive design
 const navTogglerBtn = document.querySelector(".nav-toggler"),
   aside = document.querySelector(".aside");
+
 navTogglerBtn.addEventListener("click", () => {
   asideSectionTogglerBtn();
 });
@@ -92,22 +102,35 @@ function asideSectionTogglerBtn() {
 // Handle hash changes
 window.addEventListener("hashchange", () => {
   const targetId = location.hash.replace("#", "");
-  const targetElement = document.getElementById(targetId);
+  const targetSection = document.getElementById(targetId);
 
-  if (targetElement) {
-    targetElement.classList.add("active");
-    targetElement.scrollIntoView({ behavior: "smooth" });
-    updateNav(document.querySelector(`a[href="#${targetId}"]`));
+  if (targetSection) {
+    for (let k = 0; k < totalSection; k++) {
+      allSection[k].classList.remove("active");
+    }
+
+    targetSection.scrollIntoView({ behavior: "smooth" });
+    targetSection.classList.add("active");
+
+    const targetLink = document.querySelector(`a[href="#${targetId}"]`);
+    if (targetLink) {
+      updateNav(targetLink);
+    }
   }
 });
 
-// Handle page load
+// Handle page load with hash
 document.addEventListener("DOMContentLoaded", () => {
   const targetId = location.hash.replace("#", "");
   const targetSection = document.getElementById(targetId);
 
   if (targetSection) {
+    targetSection.scrollIntoView({ behavior: "smooth" });
     targetSection.classList.add("active");
-    updateNav(document.querySelector(`a[href="#${targetId}"]`));
+
+    const targetLink = document.querySelector(`a[href="#${targetId}"]`);
+    if (targetLink) {
+      updateNav(targetLink);
+    }
   }
 });
