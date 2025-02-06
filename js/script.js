@@ -12,7 +12,6 @@ Copyright: 2023 ©MdRasen
 var typed = new Typed(".typing", {
   strings: [
     "",
-    "Web",
     "Game Developer",
     "Web Developer",
     "Graphic Designer",
@@ -22,7 +21,6 @@ var typed = new Typed(".typing", {
   BackSpeed: 60,
   loop: true,
 });
-
 // Aside
 const nav = document.querySelector(".nav"),
   navList = nav.querySelectorAll("li"),
@@ -36,32 +34,31 @@ for (let i = 0; i < totalNavList; i++) {
     for (let k = 0; k < totalSection; k++) {
       allSection[k].classList.remove("back-section");
     }
-    //Loop for removing active class
     for (let j = 0; j < totalNavList; j++) {
       if (navList[j].querySelector("a").classList.contains("active")) {
         allSection[j].classList.add("back-section");
       }
       navList[j].querySelector("a").classList.remove("active");
     }
-    //Adding active class
     this.classList.add("active");
-    showSection(this); //Function call
-    //Nav click event - Hiding the nav menu
+    showSection(this);
     if (window.innerWidth < 1200) {
       asideSectionTogglerBtn();
     }
   });
 }
+
 function showSection(element) {
-  //Loop for removing active class
   for (let k = 0; k < totalSection; k++) {
     allSection[k].classList.remove("active");
   }
   const target = element.getAttribute("href").split("#")[1];
-  document.querySelector("#" + target).classList.add("active");
+  const targetSection = document.querySelector("#" + target);
+
+  targetSection.classList.remove("active");
+  setTimeout(() => targetSection.classList.add("active"), 10);
 }
 
-//For Hire me section
 document.querySelector(".hire-me").addEventListener("click", function () {
   showSection(this);
   updateNav(this);
@@ -80,7 +77,7 @@ function updateNav(element) {
   }
 }
 
-//For Nav Toggler Button
+// Nav Toggler Button
 const navTogglerBtn = document.querySelector(".nav-toggler"),
   aside = document.querySelector(".aside");
 navTogglerBtn.addEventListener("click", () => {
@@ -91,3 +88,26 @@ function asideSectionTogglerBtn() {
   aside.classList.toggle("open");
   navTogglerBtn.classList.toggle("open");
 }
+
+// Handle hash changes
+window.addEventListener("hashchange", () => {
+  const targetId = location.hash.replace("#", "");
+  const targetElement = document.getElementById(targetId);
+
+  if (targetElement) {
+    targetElement.classList.add("active");
+    targetElement.scrollIntoView({ behavior: "smooth" });
+    updateNav(document.querySelector(`a[href="#${targetId}"]`));
+  }
+});
+
+// Handle page load
+document.addEventListener("DOMContentLoaded", () => {
+  const targetId = location.hash.replace("#", "");
+  const targetSection = document.getElementById(targetId);
+
+  if (targetSection) {
+    targetSection.classList.add("active");
+    updateNav(document.querySelector(`a[href="#${targetId}"]`));
+  }
+});
