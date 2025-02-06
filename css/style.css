@@ -801,6 +801,12 @@ h3.my-profession {
 .contact .contact-info-item .icon .fa {
   font-size: 25px;
   color: var(--skin-color);
+  transition: all 0.3s ease;
+}
+
+.contact .contact-info-item .icon .fa:hover {
+  color: var(--text-black-900); /* Change color on hover if needed */
+  transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
 .contact .contact-info-item h4 {
