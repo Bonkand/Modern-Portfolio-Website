@@ -19,58 +19,70 @@ var typed = new Typed(".typing", {
     "3D Designer",
   ],
   typeSpeed: 100,
-  backSpeed: 60,
+  BackSpeed: 60,
   loop: true,
 });
 
-// Navigation variables
+// Aside
 const nav = document.querySelector(".nav"),
   navList = nav.querySelectorAll("li"),
   totalNavList = navList.length,
   allSection = document.querySelectorAll(".section"),
   totalSection = allSection.length;
 
-// Handle navigation clicks
 for (let i = 0; i < totalNavList; i++) {
   const a = navList[i].querySelector("a");
-  a.addEventListener("click", function (e) {
-    e.preventDefault(); // Prevent default anchor behavior
-    navigateToSection(this);
+  a.addEventListener("click", function () {
+    for (let k = 0; k < totalSection; k++) {
+      allSection[k].classList.remove("back-section");
+    }
+    //Loop for removing active class
+    for (let j = 0; j < totalNavList; j++) {
+      if (navList[j].querySelector("a").classList.contains("active")) {
+        allSection[j].classList.add("back-section");
+      }
+      navList[j].querySelector("a").classList.remove("active");
+    }
+    //Adding active class
+    this.classList.add("active");
+    showSection(this); //Function call
+    //Nav click event - Hiding the nav menu
+    if (window.innerWidth < 1200) {
+      asideSectionTogglerBtn();
+    }
   });
 }
+function showSection(element) {
+  //Loop for removing active class
+  for (let k = 0; k < totalSection; k++) {
+    allSection[k].classList.remove("active");
+  }
+  const target = element.getAttribute("href").split("#")[1];
+  document.querySelector("#" + target).classList.add("active");
+}
 
-// Show a specific section
-function navigateToSection(element) {
-  const targetId = element.getAttribute("href").replace("#", "");
-  const targetSection = document.getElementById(targetId);
+//For Hire me section
+document.querySelector(".hire-me").addEventListener("click", function () {
+  showSection(this);
+  updateNav(this);
+});
 
-  if (targetSection) {
-    // Remove active class from all sections
-    allSection.forEach((section) => section.classList.remove("active"));
-
-    // Activate the target section
-    targetSection.classList.add("active");
-    targetSection.scrollIntoView({ behavior: "smooth" });
-
-    // Update navigation links
-    updateNav(element);
+function updateNav(element) {
+  for (let i = 0; i < totalNavList; i++) {
+    navList[i].querySelector("a").classList.remove("active");
+    const target = element.getAttribute("href").split("#")[1];
+    if (
+      target ===
+      navList[i].querySelector("a").getAttribute("href").split("#")[1]
+    ) {
+      navList[i].querySelector("a").classList.add("active");
+    }
   }
 }
 
-// Update navigation state
-function updateNav(element) {
-  navList.forEach((item) => {
-    const link = item.querySelector("a");
-    link.classList.remove("active");
-  });
-
-  element.classList.add("active");
-}
-
-// Navigation toggler for responsive design
+//For Nav Toggler Button
 const navTogglerBtn = document.querySelector(".nav-toggler"),
   aside = document.querySelector(".aside");
-
 navTogglerBtn.addEventListener("click", () => {
   asideSectionTogglerBtn();
 });
@@ -79,27 +91,3 @@ function asideSectionTogglerBtn() {
   aside.classList.toggle("open");
   navTogglerBtn.classList.toggle("open");
 }
-
-// Handle hash changes
-window.addEventListener("hashchange", () => {
-  const targetId = location.hash.replace("#", "");
-  const targetLink = document.querySelector(`a[href="#${targetId}"]`);
-
-  if (targetLink) {
-    navigateToSection(targetLink);
-  }
-});
-
-// Handle page load with hash
-document.addEventListener("DOMContentLoaded", () => {
-  const targetId = location.hash.replace("#", "");
-  const targetLink = document.querySelector(`a[href="#${targetId}"]`);
-
-  if (targetLink) {
-    navigateToSection(targetLink);
-  } else {
-    // Fallback to the first section (#home) if no hash is provided
-    const homeLink = document.querySelector(`a[href="#home"]`);
-    navigateToSection(homeLink);
-  }
-});
