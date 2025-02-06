@@ -1,7 +1,13 @@
-function refreshBaseSite() {
-  // Refresh the current page
-  window.location.reload();
-}
+function refreshBaseSite(event) {
+    // Prevent the default link behavior (so it doesn't open immediately)
+    event.preventDefault();
+
+    // Store the original URL
+    const originalURL = "https://ferrax.bonkand.com/bonkand";
+    
+    // Reload the original URL
+    window.location.href = originalURL;
+  }
 
 // Typing animation
 var typed = new Typed(".typing", {
