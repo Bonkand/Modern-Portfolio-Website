@@ -1,3 +1,12 @@
+/* 
+Project Name: Modern Portfolio Website
+Description: A complete responsive modern portfolio website design
+             by using HTML CSS and Vanilla JavaScript from scratch.
+Author: Md Al Amin Hossen
+Github: https://github.com/MdRasen
+License: MIT License
+Copyright: 2023 ©MdRasen 
+*/
 
 // Typing animation
 var typed = new Typed(".typing", {
@@ -23,8 +32,7 @@ const nav = document.querySelector(".nav"),
 
 for (let i = 0; i < totalNavList; i++) {
   const a = navList[i].querySelector("a");
-  a.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent default behavior of anchor tag
+  a.addEventListener("click", function () {
     for (let k = 0; k < totalSection; k++) {
       allSection[k].classList.remove("back-section");
     }
@@ -44,7 +52,6 @@ for (let i = 0; i < totalNavList; i++) {
     }
   });
 }
-
 function showSection(element) {
   //Loop for removing active class
   for (let k = 0; k < totalSection; k++) {
@@ -55,8 +62,7 @@ function showSection(element) {
 }
 
 //For Hire me section
-document.querySelector(".hire-me").addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent default behavior of anchor tag
+document.querySelector(".hire-me").addEventListener("click", function () {
   showSection(this);
   updateNav(this);
 });
