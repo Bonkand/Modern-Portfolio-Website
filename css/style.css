@@ -329,6 +329,34 @@ ul {
   ransform: scale(1.05); 
 }
 
+.nav li {
+  margin-bottom: 20px;
+}
+
+/* Style specifically for the external link */
+.nav li.external-link {
+  margin-top: 50px; /* Add extra spacing above the external link */
+  text-align: center; /* Center the text */
+}
+
+.nav li.external-link a {
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+  color: var(--text-black-900);
+  padding: 5px 15px;
+  border: 1px solid var(--bg-black-50); /* Optional: Add a border to make it visually distinct */
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav li.external-link a:hover {
+  color: var(--skin-color); /* Change text color on hover */
+  border-color: var(--skin-color); /* Optional: Change border color on hover */
+}
+
+
+
 /* Aside End */
 
 /* Home Start */
