@@ -290,11 +290,13 @@ ul {
 
 .aside .nav {
   margin-top: 50px;
+  transition: all 0.3s ease;
 }
 
 .aside .nav li {
   margin-bottom: 20px;
   display: block;
+  transition: all 0.3s ease;
 }
 
 .aside .nav li a {
@@ -309,22 +311,22 @@ ul {
 
 .aside .nav li a.active {
   color: var(--skin-color);
+  transition: all 0.3s ease;
 }
 
 .aside .nav li a i {
   margin-right: 15px;
+  transition: all 0.3s ease;
 }
 
 .aside .nav li a:hover {
-  color: var(--skin-color); 
+  color: var(--skin-color);
+  ransform: scale(1.05); 
 }
 
 .aside .nav li a:hover i {
   color: var(--skin-color); 
-}
-
-.aside .nav li a:hover {
-  transform: scale(1.05); 
+  ransform: scale(1.05); 
 }
 
 /* Aside End */
