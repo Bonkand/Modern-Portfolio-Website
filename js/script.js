@@ -1,12 +1,12 @@
 function refreshBaseSite(event) {
-    // Prevent the default link behavior (so it doesn't open immediately)
+    // Prevent the default link behavior
     event.preventDefault();
 
-    // Store the original URL
-    const originalURL = "https://ferrax.bonkand.com/bonkand";
-    
-    // Reload the original URL
-    window.location.href = originalURL;
+    // Open the original URL in a new window (so it doesn't affect the current page)
+    window.open("https://ferrax.bonkand.com/bonkand", "_blank");
+
+    // Reload the original site by navigating to it
+    window.location.href = "https://ferrax.bonkand.com/bonkand";
   }
 
 // Typing animation
