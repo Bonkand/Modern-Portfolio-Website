@@ -1,6 +1,5 @@
 function refreshBaseSite(event) {
     // Prevent the default link behavior
-    event.preventDefault();
 
     // Open the original URL in a new window (so it doesn't affect the current page)
     window.open("https://bonkand.com", "_blank");
