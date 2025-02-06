@@ -3,10 +3,10 @@ function refreshBaseSite(event) {
     event.preventDefault();
 
     // Open the original URL in a new window (so it doesn't affect the current page)
-    window.open("https://ferrax.bonkand.com/bonkand", "_blank");
+    window.open("https://ferrax.bonkand.com/", "_blank");
 
     // Reload the original site by navigating to it
-    window.location.href = "https://ferrax.bonkand.com/bonkand";
+    window.location.href = "https://ferrax.bonkand.com/";
   }
 
 // Typing animation
