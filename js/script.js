@@ -35,55 +35,36 @@ for (let i = 0; i < totalNavList; i++) {
   const a = navList[i].querySelector("a");
   a.addEventListener("click", function (e) {
     e.preventDefault(); // Prevent default anchor behavior
-
-    // Deactivate all sections and set "back-section" for the current one
-    for (let k = 0; k < totalSection; k++) {
-      allSection[k].classList.remove("back-section", "active");
-    }
-
-    for (let j = 0; j < totalNavList; j++) {
-      const navLink = navList[j].querySelector("a");
-      navLink.classList.remove("active");
-
-      if (navLink === this) {
-        allSection[j].classList.add("back-section");
-      }
-    }
-
-    // Activate the clicked link and show the target section
-    this.classList.add("active");
-    showSection(this);
-
-    if (window.innerWidth < 1200) {
-      asideSectionTogglerBtn();
-    }
+    navigateToSection(this);
   });
 }
 
 // Show a specific section
-function showSection(element) {
+function navigateToSection(element) {
   const targetId = element.getAttribute("href").replace("#", "");
   const targetSection = document.getElementById(targetId);
 
   if (targetSection) {
+    // Remove active class from all sections
+    allSection.forEach((section) => section.classList.remove("active"));
+
+    // Activate the target section
+    targetSection.classList.add("active");
     targetSection.scrollIntoView({ behavior: "smooth" });
-    setTimeout(() => {
-      targetSection.classList.add("active");
-    }, 10); // Delay to retrigger animations
+
+    // Update navigation links
+    updateNav(element);
   }
 }
 
 // Update navigation state
 function updateNav(element) {
-  for (let i = 0; i < totalNavList; i++) {
-    const navLink = navList[i].querySelector("a");
-    navLink.classList.remove("active");
+  navList.forEach((item) => {
+    const link = item.querySelector("a");
+    link.classList.remove("active");
+  });
 
-    const target = element.getAttribute("href").replace("#", "");
-    if (target === navLink.getAttribute("href").replace("#", "")) {
-      navLink.classList.add("active");
-    }
-  }
+  element.classList.add("active");
 }
 
 // Navigation toggler for responsive design
@@ -102,35 +83,23 @@ function asideSectionTogglerBtn() {
 // Handle hash changes
 window.addEventListener("hashchange", () => {
   const targetId = location.hash.replace("#", "");
-  const targetSection = document.getElementById(targetId);
+  const targetLink = document.querySelector(`a[href="#${targetId}"]`);
 
-  if (targetSection) {
-    for (let k = 0; k < totalSection; k++) {
-      allSection[k].classList.remove("active");
-    }
-
-    targetSection.scrollIntoView({ behavior: "smooth" });
-    targetSection.classList.add("active");
-
-    const targetLink = document.querySelector(`a[href="#${targetId}"]`);
-    if (targetLink) {
-      updateNav(targetLink);
-    }
+  if (targetLink) {
+    navigateToSection(targetLink);
   }
 });
 
 // Handle page load with hash
 document.addEventListener("DOMContentLoaded", () => {
   const targetId = location.hash.replace("#", "");
-  const targetSection = document.getElementById(targetId);
+  const targetLink = document.querySelector(`a[href="#${targetId}"]`);
 
-  if (targetSection) {
-    targetSection.scrollIntoView({ behavior: "smooth" });
-    targetSection.classList.add("active");
-
-    const targetLink = document.querySelector(`a[href="#${targetId}"]`);
-    if (targetLink) {
-      updateNav(targetLink);
-    }
+  if (targetLink) {
+    navigateToSection(targetLink);
+  } else {
+    // Fallback to the first section (#home) if no hash is provided
+    const homeLink = document.querySelector(`a[href="#home"]`);
+    navigateToSection(homeLink);
   }
 });
