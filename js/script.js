@@ -11,7 +11,7 @@ function refreshBaseSite(event) {
 // Typing animation
 var typed = new Typed(".typing", {
   strings: [
-    "",
+    "director of ferrax.dev",
     "Game Developer",
     "UI/UX Designer",
     "Graphic Designer",
