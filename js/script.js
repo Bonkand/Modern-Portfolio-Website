@@ -13,7 +13,7 @@ var typed = new Typed(".typing", {
   strings: [
     "",
     "Game Developer",
-    "Web Developer",
+    "UI/UX Designer",
     "Graphic Designer",
     "3D Designer",
     "director of ferrax.dev",
