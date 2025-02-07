@@ -5,18 +5,18 @@ function refreshBaseSite(event) {
     window.open("https://bonkand.com", "_blank");
 
     // Reload the original site by navigating to it
-    window.location.href = "https://ferrax.bonkand.com/";
+    window.location.href = "https://ferrax.dev/";
   }
 
 // Typing animation
 var typed = new Typed(".typing", {
   strings: [
     "",
-    "Web",
     "Game Developer",
     "Web Developer",
     "Graphic Designer",
     "3D Designer",
+    "director of ferrax.dev",
   ],
   typeSpeed: 100,
   BackSpeed: 60,
