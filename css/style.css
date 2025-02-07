@@ -49,6 +49,13 @@ ul {
   list-style: none;
 }
 
+footer {
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+}
+
 .section {
   background: var(--bg-black-900);
   min-height: 100vh;
