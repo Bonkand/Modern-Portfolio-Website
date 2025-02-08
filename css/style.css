@@ -400,15 +400,17 @@ footer {
   min-height: 100vh;
   display: flex;
   color: var(--text-black-900);
-  background-image: url('images/hero.jpg'); /* Set the background image */
+  background-image: url('../images/hero.jpg'); /* Correct path to the image */
   background-size: cover; /* Ensure the image covers the entire section */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
   position: relative; /* Required for the overlay */
+  width: 100%; /* Ensure the section takes full width */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .home::before {
-  content: "";
+content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -422,6 +424,10 @@ footer {
 .home .container {
   position: relative;
   z-index: 1; /* Bring the content above the overlay */
+  width: 100%; /* Ensure the container takes full width */
+  max-width: 1100px; /* Match your container's max-width */
+  margin: 0 auto; /* Center the container */
+  padding: 0 15px; /* Add padding to match your existing layout */
 }
 
 /* Hide the original image (optional) */
