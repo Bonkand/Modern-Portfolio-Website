@@ -373,6 +373,11 @@ footer {
   min-height: 100vh;
   display: flex;
   color: var(--text-black-900);
+  background-color: var(--bg-black-900); /* Keep the existing background color */
+  background-image: url('../images/background.png'); /* Add the background image */
+  background-position: bottom; /* Position the image at the bottom */
+  background-size: contain; /* Ensure the image doesn't exceed the section's size */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
 .home .home-info {
