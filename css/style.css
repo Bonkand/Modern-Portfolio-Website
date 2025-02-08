@@ -19,6 +19,7 @@ Copyright: 2023 ©MdRasen
 
 /* Global CSS Start */
 * {
+  outline: 1px solid red;
   margin: 0;
   padding: 0;
   outline: none;
