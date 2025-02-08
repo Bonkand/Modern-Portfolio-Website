@@ -372,6 +372,8 @@ footer {
 
 /* Home Start */
 .home {
+  position: absolute;
+  top: 8px;
   min-height: 100vh;
   display: flex;
   color: var(--text-black-900);
