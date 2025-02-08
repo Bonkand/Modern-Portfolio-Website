@@ -385,8 +385,9 @@ footer {
 }
 
 .home .home-info {
-  flex: 0 0 60%;
-  max-width: 60%;
+  flex: 0 0 100%;
+  max-width: 100%;
+  text-align: center;
 }
 
 h3.hello {
