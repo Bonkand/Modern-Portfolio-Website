@@ -58,6 +58,11 @@ footer {
   width: 100%;
 }
 
+/* Hide the home-img div only on the home page */
+#home .home-img {
+  display: none; /* Completely hide the div */
+}
+
 .section {
   background: var(--bg-black-900);
   min-height: 100vh;
