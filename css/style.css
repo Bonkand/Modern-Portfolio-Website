@@ -385,6 +385,7 @@ footer {
   background-position: bottom; /* Position the image at the bottom */
   background-size: contain; /* Ensure the image doesn't exceed the section's size */
   background-repeat: no-repeat; /* Prevent the image from repeating */
+  position: relative;
 }
 
 .home .home-info {
@@ -419,11 +420,13 @@ h3.my-profession {
   color: var(--text-black-700);
 }
 
-.home .home-img {
-  flex: 0 0 40%;
-  max-width: 40%;
-  text-align: center;
-  position: relative;
+  .home .home-img {
+  flex: 0 0 40%; /* Adjust this value as needed */
+  max-width: 40%; /* Adjust this value as needed */
+  visibility: hidden; /* Hide the div but keep its space */
+  opacity: 0; /* Make it fully transparent */
+  z-index: -1; /* Place it behind the background */
+  position: relative; /* Ensure it respects z-index */
 }
 
 .home .home-img::before {
