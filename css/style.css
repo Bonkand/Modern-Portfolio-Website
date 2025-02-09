@@ -372,8 +372,6 @@ footer {
 
 /* Home Start */
 .home {
-  position: absolute;
-  top: 8px;
   min-height: 100vh;
   display: flex;
   color: var(--text-black-900);
@@ -385,10 +383,8 @@ footer {
 }
 
 .home .home-info {
-  flex: 0 0 100%;
-  max-width: 100%;
-  text-align: center;
-   margin-top: 50px;
+  flex: 0 0 60%;
+  max-width: 60%;
 }
 
 h3.hello {
