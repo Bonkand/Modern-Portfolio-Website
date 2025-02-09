@@ -15,7 +15,6 @@ Copyright: 2023 ©MdRasen
   --bg-black-50: #e8dfec;
   --text-black-900: #302e4d;
   --text-black-700: #504e70;
-  --home-background-image: url('../images/background.png');
 }
 
 /* Global CSS Start */
@@ -39,7 +38,6 @@ body.dark {
   --bg-black-50: #393939;
   --text-black-900: #ffffff;
   --text-black-700: #e9e9e9;
-  --home-background-image: url('../images/background-.png');
 }
 
 ::before,
@@ -375,11 +373,6 @@ footer {
   min-height: 100vh;
   display: flex;
   color: var(--text-black-900);
-  background-color: var(--bg-black-900); /* Keep the existing background color */
-  background-image: var(--home-background-image); /* Add the background image */
-  background-position: bottom; /* Position the image at the bottom */
-  background-size: contain; /* Ensure the image doesn't exceed the section's size */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
 .home .home-info {
