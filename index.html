@@ -449,7 +449,24 @@
               <div class="row">
                 <div class="form-item col-12 padd-15">
                   <div class="form-group">
-                    <button type="submit" class="btn">Send Message</button>
+                     <button onclick="javascript:sendNotification()" type="submit" class="btn">Send</button>
+          <script>
+            // both
+            function send(message) {
+              let r = new XMLHttpRequest();
+              r.open("POST", "https://ntfy.sh/Ferrax", true);
+              r.setRequestHeader("Content-Type", "text/plain");
+              r.send(message);
+            }
+
+            // send notification
+            let ntfyInput = document.getElementById("ntfy-input");
+            function sendNotification() {
+              if (ntfyInput.value.length <= 0) return;  // Corrected this line
+              send(ntfyInput.value);  // Call send only if the input is not empty
+              ntfyInput.value = "";    // Clear the input after sending
+            }
+          </script>
                   </div>
                 </div>
               </div>
